@@ -1,1 +1,43 @@
-this is test
+[root@ip-172-31-37-123 ansible]# ansible -i hosts all --list-hosts
+  hosts (1):
+    172.31.37.123
+[root@ip-172-31-37-123 ansible]#
+
+
+
+[root@ip-172-31-37-123 ansible]# ansible -i hosts all  --private-key=/root/.ssh/devops -u centos -m ping
+
+172.31.37.123 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+[root@ip-172-31-37-123 ansible]#
+
+
+
+
+
+[root@ip-172-31-37-123 ansible]# ansible -i hosts all  --private-key=/root/.ssh/devops -u centos -m shell -a uptime
+172.31.37.123 | CHANGED | rc=0 >>
+ 09:02:53 up 40 min,  4 users,  load average: 0.25, 0.08, 0.06
+
+[root@ip-172-31-37-123 ansible]#
+
+[root@ip-172-31-37-123 ansible]# ansible -i hosts all  --private-key=/root/.ssh/devops -u centos -m shell -a 'df -kh'
+172.31.37.123 | CHANGED | rc=0 >>
+Filesystem               Size  Used Avail Use% Mounted on
+devtmpfs                 484M     0  484M   0% /dev
+tmpfs                    495M  128K  495M   1% /dev/shm
+tmpfs                    495M  6.8M  488M   2% /run
+tmpfs                    495M     0  495M   0% /sys/fs/cgroup
+/dev/mapper/centos-root  6.7G  1.8G  4.9G  27% /
+/dev/xvda1               497M  293M  204M  59% /boot
+tmpfs                     99M     0   99M   0% /run/user/1000
+tmpfs                     99M     0   99M   0% /run/user/0
+
+[root@ip-172-31-37-123 ansible]#
+
+

@@ -1,0 +1,63 @@
+- name: demo on variables 
+  hosts: all
+  vars: 
+    URL: www.google.com
+  tasks:
+    - name: demo on play with variables
+      debug:
+        msg: "URL ={{URL}}"
+
+
+- name:   Demo on vars with task variables 
+  hosts:  all
+  tasks:
+    - name: Demo on tasks 
+      debug:
+        msg: "URL ={{URL1}}"
+      vars:
+        URL1: play.google.com
+
+    - name: Access variable from previous task 
+      debug:
+        msg: "URL = {{URL}}"
+       ignore_errors: True
+
+    - name: dealing with prompt variables 
+      vars_prompt: 
+        - prompt: enter the URL?
+          name: URL 
+          private: no
+
+      tasks:
+    - name: demo on play with variables
+      debug:
+        msg: "URL ={{URL}}"
+
+
+- name: define all variables 
+  hosts: all
+  vars:
+    URL1: www.pool.com
+  vars_prompt:
+    - prompt: Enter the URL1?
+       name: URL1
+       private: no
+   vars_file:
+     - vars01.yml
+   tasks:
+     debug:
+       msg: "{{URL1}}}"
+
+- name: demo on priority sets
+  hosts: all
+  vars_file:
+    -vars01.yml
+  vars:
+    URL: www.airtel.com
+  debug:
+    msg: "URL= {{URL}}}" 
+  tasks: 
+    - name: custom facts
+      debug:
+        msg: " project name {{ansible_local_facts}}
+        

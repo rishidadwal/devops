@@ -1,0 +1,13 @@
+- name: declaring variables 
+  hosts: all
+  tasks:
+   - name: get server uptime
+     shell: uptime
+     register: out
+
+   - name: declaring variable with set_facts module
+     set_fact:
+       URL: www.google.com
+   - name: accessig variable from previous tasks
+     debug:
+        msg: " {{URL}} , server load is {{out.stdout}}"

@@ -1,0 +1,16 @@
+- name: this is my demo on tag
+  hosts: all
+  tags: 
+    - web
+  task:
+
+  debug:
+    msg: "welcome to web server"
+
+- name: this is my second demo on tag
+  hosts: all
+  tags:
+    - server
+  tasks:
+  debug:
+    msg: :welcome to my centos server"

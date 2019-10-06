@@ -1,0 +1,20 @@
+- name: demo on loops
+  hosts: all
+  tasks:
+    debug:
+      msg: " helo {{item}}"
+    loop:
+      - RAJU
+      - RAJA
+      - RISHI
+      - DADWAL
+
+
+- name: demo on loops
+  hosts: all
+  tasks:
+    debug:
+      msg: " helo {{item.name}}"
+    loop:
+      - {name: rishi , email: 1990rishi@gmail.com}
+      - {name: dadwal , email: dadwal@airtel.com}

@@ -1,0 +1,14 @@
+- name: demo on play struncture
+  hosts: all
+  tasks:
+    - name: say hello
+      debug: 
+       msg: ""Hey ,Saying Hellow"
+
+
+- name: Demo on second taskis
+  hosts: all
+  tasks:
+    - name: say hello again
+      debug:
+        msg: "hello, hello again"

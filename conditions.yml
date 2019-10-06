@@ -1,0 +1,19 @@
+- name: demo on conditions
+  hosts: all
+  gather_facts: yes
+  tasks:
+    - name: Ron on centos 
+      shell: yul clean all
+      when: ansible_distributuin == "Centos"
+
+    - name: run on ubantu
+      shell: apt-get update
+      when: ansible_distributuin == "Ubantu"
+    
+    - name: check cpu load
+      shell: "uptime| awk -F '{print$NF}'"
+      register: out
+
+    - name: send load average to telegram
+      when: out.stdout > 0
+      
