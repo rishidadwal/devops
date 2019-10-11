@@ -1,0 +1,6 @@
+FROM centos 
+RUN yum install httpd -y
+EXPOSE 80
+ADD curl -s https://s3-us-west-2.amazonaws.com/studentapi-cit/index.html -o /var/www/html/index.html
+RUN apache:apache /var/www/html/index.html
+CMD httpd -FORGROUND
